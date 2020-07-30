@@ -1,0 +1,11 @@
+---
+azure_package_name: azure-cli
+
+repo_key_url: https://packages.microsoft.com/keys/microsoft.asc
+
+yum_repo_name: "{{ azure_package_name }}"
+yum_repo_description: Microsoft Azure CLI
+yum_repo_baseurl: https://packages.microsoft.com/yumrepos/azure-cli
+
+apt_key_server: packages.microsoft.com
+apt_key_id: 52E16F86FEE04B979B07E28DB02C46DF417A0893

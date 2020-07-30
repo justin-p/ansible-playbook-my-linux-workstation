@@ -1,0 +1,9 @@
+---
+- name: Install ZSH and oh-my-zsh
+  import_tasks: install-oh-my-zsh.yml
+
+- name: Install antibody plugin manager
+  include_tasks: install-antibody.yml
+
+- name: Configure ZSH for each user
+  include_tasks: configure-zsh.yml

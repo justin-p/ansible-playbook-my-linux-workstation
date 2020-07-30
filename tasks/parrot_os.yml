@@ -1,0 +1,33 @@
+---
+- hosts: local
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: Remove /usr/bin/zypper if we are running Parrot.
+      file:
+        path: /usr/bin/zypper
+        state: absent
+      become: yes
+      when: ansible_facts['os_family'] == "Parrot GNU/Linux"
+
+    - name: Set ansible vars to debian if we are running Parrot.
+      set_fact:
+        ansible_os_family: Debian
+        ansible_distribution: Debian
+        ansible_distribution_release: stretch
+      when: ansible_facts['os_family'] == "Parrot GNU/Linux"
+
+    - name: Install packages using the systems package manager
+      apt:
+        name:
+          - bloodhound
+      become: yes
+
+    - name: Ensure neo4j folders exists
+      file:
+        path: "{{ item.path }}"
+        state: "{{ item.type }}"
+      become: yes
+      with_items:
+        - { path: /usr/share/neo4j/logs, type: directory }
+        - { path: /usr/share/neo4j/run,  type: directory }

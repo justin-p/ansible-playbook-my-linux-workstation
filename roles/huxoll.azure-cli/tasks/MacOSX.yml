@@ -1,0 +1,4 @@
+---
+- name: Install azure client using Homebrew on OSX
+  command: brew install {{ azure_package_name }}
+  when: ansible_distribution == "MacOSX"

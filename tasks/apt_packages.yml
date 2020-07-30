@@ -1,0 +1,81 @@
+---
+- name: Check if Ulauncher is installed
+  command: dpkg-query -W Ulauncher
+  register: Ulauncher_check_deb
+  failed_when: Ulauncher_check_deb.rc > 1
+  changed_when: Ulauncher_check_deb.rc == 1
+
+- name: Download Ulauncher
+  get_url:
+    url: https://github.com/Ulauncher/Ulauncher/releases/download/5.8.0/ulauncher_5.8.0_all.deb
+    dest: "/home/{{ ansible_env.USER }}/Downloads/Ulauncher.deb"
+    checksum: sha256:29c6e673c44340d08fd7617d1030c8ef6719926b1ebd8d8db1c680d80e566778
+  when: Ulauncher_check_deb.rc == 1
+
+- name: Install Ulauncher
+  apt:
+    deb: "/home/{{ ansible_env.USER }}/Downloads/Ulauncher.deb"
+  become: yes
+  when: Ulauncher_check_deb.rc == 1
+
+- name: Install Hyper
+  apt:
+    deb: "/home/{{ ansible_env.USER }}/Downloads/Ulauncher.deb"
+  become: yes
+  when: Ulauncher_check_deb.rc == 1
+
+- name: Check if Hyper is installed
+  command: dpkg-query -W hyper
+  register: hyper_check_deb
+  failed_when: hyper_check_deb.rc > 1
+  changed_when: hyper_check_deb.rc == 1
+
+- name: Download Hyper
+  get_url:
+    url: https://github.com/vercel/hyper/releases/download/v3.1.0-canary.4/hyper_3.1.0-canary.4_amd64.deb
+    dest: "/home/{{ ansible_env.USER }}/Downloads/Hyper.deb"
+    checksum: sha256:ab65c94390f29e78008fe1a6bed394991d86d09fb21bdd5169e89c9447d3c17c
+  when: hyper_check_deb.rc == 1
+
+- name: Install Hyper dependencies
+  apt:
+    name:
+      - libappindicator1
+  become: yes
+  when: hyper_check_deb.rc == 1
+
+- name: Install Hyper
+  apt:
+    deb: "/home/{{ ansible_env.USER }}/Downloads/Hyper.deb"
+  become: yes
+  when: hyper_check_deb.rc == 1
+
+- name: Setup SUID for /opt/Hyper/chrome-sandbox
+  file:
+    path: /opt/Hyper/chrome-sandbox
+    owner: root
+    group: root
+    mode: '4755'
+  become: yes
+
+- name: Install packages using the systems package manager
+  apt:
+    name:
+      - stow
+      - virtualbox
+      - ncdu
+      - tmux
+      - ranger
+      - snapd
+      - keepass2
+      - adb
+      - pipenv
+      - flameshot
+      - peek
+      - fzf
+      - jq
+      - strace
+      - ltrace
+      - fonts-noto-color-emoji
+    state: latest
+  become: yes

@@ -1,0 +1,20 @@
+---
+- name: Ensure the snap service is started.
+  service:
+    name: snapd
+    state: started
+  become: yes
+
+- name: Install packages using snap.
+  snap:
+    name: "{{ item.name }}"
+    classic: "{{ item.classic }}"
+  become: yes
+  with_items:
+    - { name: code , classic: yes }
+    - { name: doctl, classic: no }
+    - { name: mattermost-desktop, classic: no }
+    - { name: amass, classic: no }
+    - { name: zoom-client, classic: no }
+    - { name: spotify, classic: no }
+    - { name: lsd, classic: no }

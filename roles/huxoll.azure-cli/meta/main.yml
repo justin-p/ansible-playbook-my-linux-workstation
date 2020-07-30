@@ -1,0 +1,25 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: huxoll
+  description: This role installs the Microsoft Azure CLI for Linux.
+  company: "None"
+  license: "None"
+  min_ansible_version: 2.4
+  platforms:
+  - name: EL
+    versions:
+      - 7
+  - name: Fedora
+    versions:
+      - 27
+  - name: Ubuntu
+    versions:
+      - xenial
+      - artful
+  galaxy_tags:
+    - cloud
+    - microsoft
+    - azure
+    - cli

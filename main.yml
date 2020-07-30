@@ -1,0 +1,25 @@
+---
+- hosts: local
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: Ensure packages are updated
+      apt:
+        update_cache: yes
+        upgrade: dist
+      become: yes
+
+- import_playbook: "{{ playbook_dir }}/tasks/parrot_os.yml"
+  when: ansible_facts['os_family'] == "Parrot GNU/Linux"
+
+- import_playbook: "{{ playbook_dir }}/tasks/roles.yml"
+
+- hosts: local
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    username: "{{ ansible_user_id }}"
+  tasks:
+    - include_tasks: "{{ playbook_dir }}/tasks/dotfiles.yml"
+    - include_tasks: "{{ playbook_dir }}/tasks/apt_packages.yml"
+    - include_tasks: "{{ playbook_dir }}/tasks/snap_packages.yml"
+    - include_tasks: "{{ playbook_dir }}/tasks/vscode.yml"

@@ -1,0 +1,9 @@
+---
+- name: install vscode extension.
+  command: "code --install-extension {{ item }}"
+  become: no
+  register: result
+  with_items:
+    - shan.code-settings-sync
+  changed_when:
+    - result.stdout is not search('is already installed.')

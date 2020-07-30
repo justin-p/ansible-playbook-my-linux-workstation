@@ -1,0 +1,41 @@
+---
+- hosts: local
+  become: yes
+  roles:
+    - role: geerlingguy.docker
+      vars:
+        docker_users: "{{ lookup('env','USER') }}"
+
+    - role: geerlingguy.pip
+      vars:
+        pip_package: python3-pip
+        pip_executable: pip3
+        pip_install_packages:
+          - name: pipx
+          - name: docker
+          - name: awscli
+          - name: molecule
+          - name: ansible-lint
+          - name: yamllint
+
+    - role: huxoll.azure-cli
+
+    - role: diodonfrost.terraform
+
+    - role: drew-kun.nerdfonts
+      vars:
+        nerdfonts_fonts:
+          - fontname: 'SpaceMono'
+            caskname: 'font-spacemono-nerd-font'
+            mono: 'font-spacemono-nerd-font-mono'
+          - fontname: 'FiraCode'
+            caskname: 'font-firacode-nerd-font'
+            mono: 'font-firacode-nerd-font-mono'
+
+    - role: iancleary.zsh_antibody
+      vars:
+        users:
+         - username: "{{ lookup('env', 'USER') }}"
+           skip_zshrc: true
+        antibody_bundles:
+          - name: gitfast

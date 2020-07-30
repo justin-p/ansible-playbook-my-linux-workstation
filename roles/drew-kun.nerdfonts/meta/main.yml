@@ -1,0 +1,28 @@
+---
+galaxy_info:
+  role_name: nerdfonts
+  author: Andrew Shagayev
+  description: The role installs nerdfonts (http://nerdfonts.com/)
+
+  license: MIT
+
+  min_ansible_version: 1.2
+
+  github_branch: master
+
+  platforms:
+   - name: MacOSX
+     versions:
+       - all
+   - name: Debian
+     versions:
+       - jessie
+
+  galaxy_tags:
+    - nerdfonts
+    - debian
+    - macos
+    - osx
+
+dependencies: []
+...

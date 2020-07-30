@@ -1,0 +1,27 @@
+---
+- name: '[Dependencies] Install Dependencies for NerdFonts on Darwin systems'
+  homebrew:
+    name:
+    - fontconfig
+    - git
+    state: present
+  register: nerdfonts_deps_install_result
+  until: nerdfonts_deps_install_result is succeeded
+  become: no
+  when: "'Darwin' in ansible_os_family"
+  tags:
+  - nerdfonts
+
+- name: '[Dependencies] Install Dependencies for NerdFonts on Debian-based systems'
+  apt:
+    name:
+    - fontconfig
+    - git
+    state: present
+  register: nerdfonts_deps_install_result
+  until: nerdfonts_deps_install_result is succeeded
+  become: yes
+  when: "'Debian' in ansible_os_family"
+  tags:
+  - nerdfonts
+...

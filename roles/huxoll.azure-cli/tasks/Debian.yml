@@ -1,0 +1,27 @@
+---
+- name: Fix broken apt module for Ubuntu 1604
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - python-simplejson
+  - aptitude
+  - apt-transport-https
+  when: ansible_os_family == 'Debian'
+
+- name: Import the APT repo key (Debian)
+  apt_key:
+    url: "{{ repo_key_url }}"
+    state: present
+
+- name: Create the APT repository (Debian)
+  apt_repository:
+    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ansible_distribution_release}} main"
+    filename: "{{ azure_package_name }}"
+    state: present
+
+- name: Install the application package (Debian)
+  apt:
+    name: "{{ azure_package_name }}"
+    update_cache: yes
+  when: not ansible_check_mode

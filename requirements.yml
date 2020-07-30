@@ -1,0 +1,7 @@
+- name: geerlingguy.docker
+- name: geerlingguy.pip
+- name: andrewrothstein.starship
+- name: diodonfrost.terraform
+- name: drew-kun.nerdfonts
+- name: huxoll.azure-cli
+- name: iancleary.zsh_antibody
