@@ -49,17 +49,18 @@
       chdir: "{{ ansible_env.HOME }}/.dotfiles"
       cmd: "stow {{ item }}"
     with_items:
-    - BurpSuite
     - bash
+    - BurpSuite
+    - flameshot
     - fzf
     - git
     - htop
+    - hyper
+    - nano
     - tmux
     - ulauncher
     - vim
     - zsh
-    - hyper
-    - flameshot
 
   - name: Change user shell to zsh
     user:
