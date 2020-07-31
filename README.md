@@ -1,6 +1,6 @@
 # ansible-my-linux-workstation
 
-A Ansible playbook that configures a clean install of linux to my preferences.
+A Ansible playbook that configures a clean install of linux to my preferences. Tested on Ubuntu 20.04 and Parrot Security MATE.
 
 ## Installation
 
