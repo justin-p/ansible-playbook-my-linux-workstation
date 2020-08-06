@@ -58,6 +58,25 @@
     mode: '4755'
   become: yes
 
+- name: Check if bat is installed
+  command: dpkg-query -W bat
+  register: bat_check_deb
+  failed_when: bat_check_deb.rc > 1
+  changed_when: bat_check_deb.rc == 1
+
+- name: Download bat
+  get_url:
+    url: https://github.com/sharkdp/bat/releases/download/v0.15.4/bat_0.15.4_amd64.deb
+    dest: "/home/{{ ansible_env.USER }}/Downloads/bat.deb"
+    checksum: sha256:66b5fa31e4946da9331824fba4b6a7076565fe83866f14562450a010a5112857
+  when: bat_check_deb.rc == 1
+
+- name: Install bat
+  apt:
+    deb: "/home/{{ ansible_env.USER }}/Downloads/bat.deb"
+  become: yes
+  when: bat_check_deb.rc == 1
+
 - name: Install packages using the systems package manager
   apt:
     name:
