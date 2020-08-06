@@ -77,6 +77,25 @@
   become: yes
   when: bat_check_deb.rc == 1
 
+- name: Check if ripgrep is installed
+  command: dpkg-query -W ripgrep
+  register: ripgrep_check_deb
+  failed_when: ripgrep_check_deb.rc > 1
+  changed_when: ripgrep_check_deb.rc == 1
+
+- name: Download ripgrep
+  get_url:
+    url: https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
+    dest: "/home/{{ ansible_env.USER }}/Downloads/ripgrep.deb"
+    checksum: sha256:cecbe73abf3c672fde070c5c1d2ea303d97dae0af9afa0655028ae0d70dd11e8
+  when: ripgrep_check_deb.rc == 1
+
+- name: Install ripgrep
+  apt:
+    deb: "/home/{{ ansible_env.USER }}/Downloads/ripgrep.deb"
+  become: yes
+  when: ripgrep_check_deb.rc == 1
+
 - name: Install packages using the systems package manager
   apt:
     name:
