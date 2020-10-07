@@ -1,5 +1,7 @@
 # ansible-playbook-my-linux-workstation
 
+![Github Actions](https://img.shields.io/github/workflow/status/justin-p/ansible-playbook-my-linux-workstation/CI?label=Github%20Actions&logo=github&style=flat-square)
+
 A Ansible playbook that configures a clean install of linux to my preferences. Tested on Ubuntu 20.04 and Parrot Security MATE.
 
 ## Installation
