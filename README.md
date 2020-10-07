@@ -6,7 +6,7 @@ A Ansible playbook that configures a clean install of linux to my preferences. T
 
 ### Quick
 
-1. Run `curl https://raw.githubusercontent.com/justin-p/ansible-my-linux-workstation/master/setup.sh | bash`
+1. Run `curl https://raw.githubusercontent.com/justin-p/ansible-playbook-my-linux-workstation/master/setup.sh | bash`
 2. Enter sudo password.
 3. Reboot the system.
 
