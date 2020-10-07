@@ -11,7 +11,7 @@
     classic: "{{ item.classic }}"
   become: yes
   with_items:
-    - { name: code , classic: yes }
+    - { name: code, classic: yes }
     - { name: doctl, classic: no }
     - { name: mattermost-desktop, classic: no }
     - { name: amass, classic: no }
