@@ -13,7 +13,7 @@ lint: |
   ansible-lint
 platforms:
   - name: instance
-    image: geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu1804}-ansible:latest
+    image: geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu1804}-ansible:latest # parrot-ansible:latest
     command: ""
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -31,5 +31,6 @@ provisioner:
     host_vars:
       instance:
         ansible_user: root
+        ansible_python_interpreter: /usr/bin/python3
 verifier:
   name: ansible

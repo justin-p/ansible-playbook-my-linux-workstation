@@ -107,8 +107,6 @@
       - keepass2
       - adb
       - flameshot
-      - peek
-      - fzf
       - jq
       - strace
       - ltrace
