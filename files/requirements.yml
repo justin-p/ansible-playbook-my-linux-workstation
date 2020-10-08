@@ -1,0 +1,3 @@
+---
+# Fake ansible role to use with requirements.yml when complaining as empty 
+- name: webofmars.dummy
