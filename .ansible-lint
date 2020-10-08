@@ -4,3 +4,7 @@ exclude_paths:
   - files/
   - .github/
   - molecule/
+skip_list:
+  - '301'
+  - '401'
+  - '403'

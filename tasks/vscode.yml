@@ -7,3 +7,5 @@
     - shan.code-settings-sync
   changed_when:
     - result.stdout is not search('is already installed.')
+  tags:
+    - molecule-notest

@@ -1,28 +1,28 @@
 ---
-- name: Check if Ulauncher is installed
-  command: dpkg-query -W Ulauncher
-  register: Ulauncher_check_deb
-  failed_when: Ulauncher_check_deb.rc > 1
-  changed_when: Ulauncher_check_deb.rc == 1
+- name: Check if ulauncher is installed
+  command: dpkg-query -W ulauncher
+  register: ulauncher_check_deb
+  failed_when: ulauncher_check_deb.rc > 1
+  changed_when: ulauncher_check_deb.rc == 1
 
-- name: Download Ulauncher
+- name: Download ulauncher
   get_url:
-    url: https://github.com/Ulauncher/Ulauncher/releases/download/5.8.0/ulauncher_5.8.0_all.deb
-    dest: "/home/{{ ansible_env.USER }}/Downloads/Ulauncher.deb"
+    url: https://github.com/ulauncher/ulauncher/releases/download/5.8.0/ulauncher_5.8.0_all.deb
+    dest: "/tmp/ulauncher_5.8.0_all.deb"
     checksum: sha256:29c6e673c44340d08fd7617d1030c8ef6719926b1ebd8d8db1c680d80e566778
-  when: Ulauncher_check_deb.rc == 1
+  when: ulauncher_check_deb.rc == 1
 
-- name: Install Ulauncher
+- name: Install ulauncher
   apt:
-    deb: "/home/{{ ansible_env.USER }}/Downloads/Ulauncher.deb"
+    deb: "/tmp/ulauncher_5.8.0_all.deb"
   become: yes
-  when: Ulauncher_check_deb.rc == 1
+  when: ulauncher_check_deb.rc == 1
 
-- name: Install Hyper
+- name: Install ulauncher
   apt:
-    deb: "/home/{{ ansible_env.USER }}/Downloads/Ulauncher.deb"
+    deb: "/tmp/ulauncher_5.8.0_all.deb"
   become: yes
-  when: Ulauncher_check_deb.rc == 1
+  when: ulauncher_check_deb.rc == 1
 
 - name: Check if Hyper is installed
   command: dpkg-query -W hyper
@@ -33,7 +33,7 @@
 - name: Download Hyper
   get_url:
     url: https://github.com/vercel/hyper/releases/download/v3.1.0-canary.4/hyper_3.1.0-canary.4_amd64.deb
-    dest: "/home/{{ ansible_env.USER }}/Downloads/Hyper.deb"
+    dest: "/tmp/hyper_3.1.0-canary.4_amd64.deb"
     checksum: sha256:ab65c94390f29e78008fe1a6bed394991d86d09fb21bdd5169e89c9447d3c17c
   when: hyper_check_deb.rc == 1
 
@@ -46,7 +46,7 @@
 
 - name: Install Hyper
   apt:
-    deb: "/home/{{ ansible_env.USER }}/Downloads/Hyper.deb"
+    deb: "/tmp/hyper_3.1.0-canary.4_amd64.deb"
   become: yes
   when: hyper_check_deb.rc == 1
 
@@ -67,13 +67,13 @@
 - name: Download bat
   get_url:
     url: https://github.com/sharkdp/bat/releases/download/v0.15.4/bat_0.15.4_amd64.deb
-    dest: "/home/{{ ansible_env.USER }}/Downloads/bat.deb"
+    dest: "/tmp/bat_0.15.4_amd64.deb"
     checksum: sha256:66b5fa31e4946da9331824fba4b6a7076565fe83866f14562450a010a5112857
   when: bat_check_deb.rc == 1
 
 - name: Install bat
   apt:
-    deb: "/home/{{ ansible_env.USER }}/Downloads/bat.deb"
+    deb: "/tmp/bat_0.15.4_amd64.deb"
   become: yes
   when: bat_check_deb.rc == 1
 
@@ -86,28 +86,26 @@
 - name: Download ripgrep
   get_url:
     url: https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
-    dest: "/home/{{ ansible_env.USER }}/Downloads/ripgrep.deb"
+    dest: "/tmp/ripgrep_11.0.2_amd64.deb"
     checksum: sha256:cecbe73abf3c672fde070c5c1d2ea303d97dae0af9afa0655028ae0d70dd11e8
   when: ripgrep_check_deb.rc == 1
 
 - name: Install ripgrep
   apt:
-    deb: "/home/{{ ansible_env.USER }}/Downloads/ripgrep.deb"
+    deb: "/tmp/ripgrep_11.0.2_amd64.deb"
   become: yes
   when: ripgrep_check_deb.rc == 1
 
-- name: Install packages using the systems package manager
+- name: Install packages using the systems package manager 1/2
   apt:
     name:
       - stow
-      - virtualbox
       - ncdu
       - tmux
       - ranger
       - snapd
       - keepass2
       - adb
-      - pipenv
       - flameshot
       - peek
       - fzf
@@ -117,3 +115,12 @@
       - fonts-noto-color-emoji
     state: latest
   become: yes
+
+- name: Install packages using the systems package manager 2/2
+  apt:
+    name:
+      - virtualbox
+    state: latest
+  become: yes
+  tags:
+    - molecule-notest

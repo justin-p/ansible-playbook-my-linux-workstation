@@ -1,5 +1,5 @@
 ---
-- hosts: local
+- hosts: all
   vars:
     ansible_python_interpreter: /usr/bin/python3
   tasks:
@@ -8,13 +8,19 @@
         update_cache: yes
         upgrade: dist
       become: yes
+      tags:
+        - molecule-idempotence-notest
+
+    - name: Ensure that unzip is installed
+      apt:
+        name: unzip
 
 - import_playbook: "{{ playbook_dir }}/tasks/parrot_os.yml"
   when: ansible_facts['os_family'] == "Parrot GNU/Linux"
 
 - import_playbook: "{{ playbook_dir }}/tasks/roles.yml"
 
-- hosts: local
+- hosts: all
   vars:
     ansible_python_interpreter: /usr/bin/python3
     username: "{{ ansible_user_id }}"

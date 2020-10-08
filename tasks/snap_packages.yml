@@ -4,6 +4,8 @@
     name: snapd
     state: started
   become: yes
+  tags:
+    - molecule-notest
 
 - name: Install packages using snap.
   snap:
@@ -20,3 +22,5 @@
     - { name: lsd, classic: no }
     - { name: drawio, classic: no }
     - { name: ngrok, classic: no }
+  tags:
+    - molecule-notest
