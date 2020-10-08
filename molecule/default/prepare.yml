@@ -14,10 +14,11 @@
         path: "~/.ssh/id_rsa"
       delegate_to: localhost
 
-    - name: Update apt cache.
+    - name: Ensure packages are updated
       apt:
-        update_cache: true
-        cache_valid_time: 3600
+        update_cache: yes
+        upgrade: dist
+      become: yes
 
     - name: Install OpenSSH.
       apt:
