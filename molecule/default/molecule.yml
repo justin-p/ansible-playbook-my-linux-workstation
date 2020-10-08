@@ -13,7 +13,7 @@ lint: |
   ansible-lint
 platforms:
   - name: instance
-    image: ${MOLECULE_DISTRO:-justin-p/docker-parrotos-ansible}
+    image: ${MOLECULE_DISTRO:-jperdok/docker-parrotos-ansible}
     command: ""
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
