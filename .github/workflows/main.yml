@@ -32,8 +32,9 @@ jobs:
     strategy:
       matrix:
         distro:
-          - ubuntu2004
-          - ubuntu1804
+          - jperdok/docker-parrotos-ansible
+          - geerlingguy/docker-ubuntu2004-ansible
+          - geerlingguy/docker-ubuntu1804-ansible
 
     steps:
       - name: Check out the codebase.
