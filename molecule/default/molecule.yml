@@ -28,5 +28,6 @@ provisioner:
     host_vars:
       instance:
         ansible_user: root
+        remote_tmp: /var/tmp
 verifier:
   name: ansible
