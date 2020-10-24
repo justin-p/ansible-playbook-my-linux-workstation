@@ -12,7 +12,7 @@ echo 'PREPARE [Installing requirements with Ansible-Galaxy.] ********'
 echo ''
 ansible-galaxy install -r /tmp/ansible_my_linux_workstation/requirements.yml >/dev/null 2>&1
 echo 'RUN [Running playbook.] ***************************************'
-ansible-playbook /tmp/ansible_playbook_my-linux_workstation/main.yml -i /tmp/ansible_playbook_my-linux_workstation/inventory.yml
+ansible-playbook /tmp/ansible_playbook_my-linux_workstation/main.yml -i /tmp/ansible_playbook_my_linux_workstation/inventory.yml
 
 echo -e '\e[35m[WARNING]: Please reboot the system to apply all changes.'
 echo ''
