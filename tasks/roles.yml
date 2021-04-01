@@ -20,6 +20,7 @@
           - name: ansible-lint
           - name: yamllint
           - name: pipenv
+      tags: molecule-notest
 
     - role: huxoll.azure-cli
 
