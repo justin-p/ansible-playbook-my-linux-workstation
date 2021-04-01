@@ -10,7 +10,7 @@ lint: |
   yamllint .
 platforms:
   - name: instance
-    image: ${MOLECULE_DISTRO:-jperdok/docker-parrotos-ansible:latest}
+    image: ${MOLECULE_DISTRO:-jperdok/docker-parrotos-ansible:edge}
     command: ""
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
