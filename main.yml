@@ -15,8 +15,12 @@
       apt:
         name: unzip
 
+    - name: Check if we are running on Parrot GNU/Linux
+      set_fact:
+        running_on_parrot: "{{ yes if ansible_facts['os_family'] == 'Parrot GNU/Linux' else no }}"
+
 - import_playbook: "{{ playbook_dir }}/tasks/parrot_os.yml"
-  when: ansible_facts['os_family'] == "Parrot GNU/Linux"
+  when: running_on_parrot == yes
 
 - import_playbook: "{{ playbook_dir }}/tasks/roles.yml"
 
