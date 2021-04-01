@@ -22,6 +22,7 @@
           - name: pipenv
 
     - role: huxoll.azure-cli
+      when: not running_on_parrot
 
     - role: diodonfrost.terraform
 
