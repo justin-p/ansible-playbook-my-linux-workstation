@@ -19,9 +19,8 @@ A Ansible playbook that configures a clean install of linux to my preferences. T
 4. `sudo apt-get update -y && sudo apt-get install git curl python3 python3-pip`
 5. `pip3 install --user ansible `
 6. `export PATH=$PATH:/$HOME/.local/bin`
-7. `ansible-galaxy install -r requirements.yml`
-8. `ansible-playbook main.yml -i inventory.yml`
-9. Reboot the system.
+7. `ansible-playbook main.yml -i inventory.yml`
+8. Reboot the system.
 
 ## Local Development
 
