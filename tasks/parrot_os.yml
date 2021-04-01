@@ -5,7 +5,7 @@
     state: absent
   become: yes
 
- - name: Set ansible vars to debian if we are running Parrot.
+- name: Set ansible vars to debian if we are running Parrot.
   set_fact:
     ansible_os_family: Debian
     ansible_distribution: Debian
