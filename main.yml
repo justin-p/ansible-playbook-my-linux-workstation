@@ -19,10 +19,10 @@
       set_fact:
         running_on_parrot: "{{ yes if ansible_facts['os_family'] == 'Parrot GNU/Linux' else no }}"
 
-- import_tasks: "{{ playbook_dir }}/tasks/parrot_os.yml"
-  when: running_on_parrot == yes
+    - import_tasks: "{{ playbook_dir }}/tasks/parrot_os.yml"
+      when: running_on_parrot == yes
 
-- import_tasks: "{{ playbook_dir }}/tasks/roles.yml"
+- import_playbook: "{{ playbook_dir }}/tasks/roles.yml"
 
 - hosts: all
   vars:
