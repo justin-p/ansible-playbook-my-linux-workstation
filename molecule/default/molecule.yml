@@ -1,5 +1,4 @@
 ---
-dependency:
 driver:
   name: docker
 lint: |
