@@ -35,6 +35,7 @@
           - fontname: 'FiraCode'
             caskname: 'font-firacode-nerd-font'
             mono: 'font-firacode-nerd-font-mono'
+      tags: molecule-notest
 
     - role: iancleary.zsh_antibody
       vars:
