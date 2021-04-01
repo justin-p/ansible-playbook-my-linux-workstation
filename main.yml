@@ -21,7 +21,7 @@
         running_on_parrot: "{{ True if ansible_facts['os_family'] == 'Parrot GNU/Linux' else False }}"
 
     - import_tasks: "{{ playbook_dir }}/tasks/parrot_os.yml"
-      when: running_on_parrot == yes
+      when: running_on_parrot
 
 - import_playbook: "{{ playbook_dir }}/tasks/roles.yml"
 
