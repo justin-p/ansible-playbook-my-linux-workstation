@@ -9,3 +9,5 @@ skip_list:
   - '301'
   - '401'
   - '403'
+warn_list:
+  - parser-error
