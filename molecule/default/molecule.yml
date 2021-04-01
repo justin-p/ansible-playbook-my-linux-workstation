@@ -7,8 +7,9 @@ driver:
   name: docker
 lint: |
   set -e
+  echo $PWD
   yamllint .
-  ansible-lint
+  ansible-lint -c .ansible-lint
 platforms:
   - name: instance
     image: ${MOLECULE_DISTRO:-jperdok/docker-parrotos-ansible}
