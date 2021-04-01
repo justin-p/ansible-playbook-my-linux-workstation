@@ -23,7 +23,7 @@
     - import_tasks: "{{ playbook_dir }}/tasks/parrot_os.yml"
       when: running_on_parrot
 
-- import_playbook: "{{ playbook_dir }}/tasks/roles.yml"
+- import_playbook: "{{ playbook_dir }}/tasks/roles.yml" # noqa parser-error
 
 - hosts: all
   vars:
