@@ -15,9 +15,9 @@ pip3 install $PIP_DEPENDENCIES > /dev/null 2>&1
 git clone $REPO_URL $FOLDER_PATH >/dev/null 2>&1
 export PATH=$PATH:/$HOME/.local/bin
 
-echo 'PREPARE [Installing requirements with Ansible-Galaxy.] ********'
-echo ''
-ansible-galaxy install -r $FOLDER_PATH/requirements.yml >/dev/null 2>&1
+## echo 'PREPARE [Installing requirements with Ansible-Galaxy.] ********'
+## echo ''
+## ansible-galaxy install -r $FOLDER_PATH/requirements.yml >/dev/null 2>&1
 echo 'RUN [Running playbook.] ***************************************'
 ansible-playbook $FOLDER_PATH/main.yml -i $FOLDER_PATH/inventory.yml
 
