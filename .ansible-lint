@@ -4,10 +4,10 @@ exclude_paths:
   - files/
   - .github/
   - molecule/
-  - .cache/  
+  - .cache/
+  - ${HOME}/.ansible/roles/  
 skip_list:
+  - experimental
   - '301'
   - '401'
   - '403'
-warn_list:
-  - parser-error
