@@ -32,9 +32,9 @@
 
 - name: Download Hyper
   get_url:
-    url: https://github.com/vercel/hyper/releases/download/v3.1.0-canary.4/hyper_3.1.0-canary.4_amd64.deb
+    url: https://github.com/vercel/hyper/releases/download/v3.1.2/hyper_3.1.2_amd64.deb
     dest: "/tmp/hyper_3.1.0-canary.4_amd64.deb"
-    checksum: sha256:ab65c94390f29e78008fe1a6bed394991d86d09fb21bdd5169e89c9447d3c17c
+    checksum: sha256:af7872e791d2a0c13b67ea864e1370b32181f0f14db5f81ab76bb54761f23dd6
   when: hyper_check_deb.rc == 1
 
 - name: Install Hyper dependencies
@@ -46,7 +46,7 @@
 
 - name: Install Hyper
   apt:
-    deb: "/tmp/hyper_3.1.0-canary.4_amd64.deb"
+    deb: "/tmp/hyper_3.1.2_amd64.deb"
   become: yes
   when: hyper_check_deb.rc == 1
 
