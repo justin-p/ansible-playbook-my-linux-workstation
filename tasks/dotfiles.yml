@@ -1,54 +1,54 @@
 ---
 - name: Clone dotfiles
-  git:
+  ansible.builtin.git:
     repo: https://github.com/justin-p/dotfiles.git
     dest: "{{ ansible_env.HOME }}/.dotfiles"
 
 - name: Clone fzf
-  git:
+  ansible.builtin.git:
     repo: https://github.com/junegunn/fzf
     dest: "{{ ansible_env.HOME }}/.fzf/"
     depth: 1
 
 - name: Clone tmux plugin manager
-  git:
+  ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
     dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
     depth: 1
 
 - name: Clone vim-airline
-  git:
+  ansible.builtin.git:
     repo: https://github.com/vim-airline/vim-airline
     dest: "{{ ansible_env.HOME }}/.vim/pack/dist/start/vim-airline"
     depth: 1
 
 - name: Clone vim-airline-themes
-  git:
+  ansible.builtin.git:
     repo: https://github.com/vim-airline/vim-airline-themes
     dest: "{{ ansible_env.HOME }}/.vim/pack/dist/start/vim-airline-themes"
     depth: 1
 
 - name: Clone vim-airline
-  git:
+  ansible.builtin.git:
     repo: https://github.com/scopatz/nanorc
     dest: "{{ ansible_env.HOME }}/.nano"
     version: v2.9
 
 - name: Install stow
-  apt:
+  ansible.builtin.apt:
     name:
       - stow
   become: yes
 
 - name: Remove .vimrc
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.vimrc"
     state: absent
   tags:
     - molecule-idempotence-notest
 
 - name: Stow configurations
-  command:
+  ansible.builtin.command:
     chdir: "{{ ansible_env.HOME }}/.dotfiles"
     cmd: "stow {{ item }}"
   with_items:
@@ -68,7 +68,7 @@
     - molecule-idempotence-notest
 
 - name: Change user shell to zsh
-  user:
+  ansible.builtin.user:
     name: "{{ username }}"
     shell: /bin/zsh
   become: yes
