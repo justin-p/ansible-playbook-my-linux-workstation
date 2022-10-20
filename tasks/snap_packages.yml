@@ -1,6 +1,6 @@
 ---
 - name: Ensure the snap service is started.
-  service:
+  ansible.builtin.service:
     name: snapd
     state: started
   become: yes
@@ -8,7 +8,7 @@
     - molecule-notest
 
 - name: Install packages using snap.
-  snap:
+  community.general.snap:
     name: "{{ item.name }}"
     classic: "{{ item.classic }}"
   become: yes
