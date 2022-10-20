@@ -1,18 +1,18 @@
 ---
 - name: Remove /usr/bin/zypper if we are running Parrot.
-  file:
+  ansible.builtin.file:
     path: /usr/bin/zypper
     state: absent
   become: yes
 
 - name: Set ansible vars to debian if we are running Parrot.
-  set_fact:
+  ansible.builtin.set_fact:
     ansible_os_family: Debian
     ansible_distribution: Debian
     ansible_distribution_release: stretch
 
 - name: Install packages using the systems package manager
-  apt:
+  ansible.builtin.apt:
     name:
       - bloodhound
       - peek
@@ -20,7 +20,7 @@
   become: yes
 
 - name: Ensure neo4j folders exists
-  file:
+  ansible.builtin.file:
     path: "{{ item.path }}"
     state: "{{ item.type }}"
   become: yes
