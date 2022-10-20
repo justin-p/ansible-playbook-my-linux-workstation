@@ -1,6 +1,6 @@
 ---
 - name: install vscode extension.
-  command: "code --install-extension {{ item }}"
+  ansible.builtin.command: "code --install-extension {{ item }}"
   become: no
   register: result
   with_items:
