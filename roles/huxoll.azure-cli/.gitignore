@@ -1,4 +1,0 @@
-*.retry
-tests/test.sh
-*.swp
-*.rnd
