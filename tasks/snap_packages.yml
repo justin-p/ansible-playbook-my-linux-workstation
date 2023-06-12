@@ -14,7 +14,6 @@
   become: yes
   with_items:
     - { name: code, classic: yes }
-    - { name: doctl, classic: no }
     - { name: mattermost-desktop, classic: no }
     - { name: lsd, classic: no }
     - { name: drawio, classic: no }
