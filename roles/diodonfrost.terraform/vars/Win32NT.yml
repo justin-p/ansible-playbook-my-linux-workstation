@@ -1,3 +1,0 @@
----
-# vars file for terraform in Windows system
-terraform_default_path: C:\HashiCorp\terraform\bin\

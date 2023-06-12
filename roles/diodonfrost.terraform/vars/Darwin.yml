@@ -1,3 +1,0 @@
----
-# vars file for terraform in Mac osx system
-terraform_default_path: /usr/local/bin/
