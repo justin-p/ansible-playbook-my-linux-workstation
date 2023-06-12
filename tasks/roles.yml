@@ -22,8 +22,6 @@
           - name: pipenv
       tags: molecule-notest
 
-    - role: huxoll.azure-cli
-
     - role: diodonfrost.terraform
 
     - role: drew-kun.nerdfonts
