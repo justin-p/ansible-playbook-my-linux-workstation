@@ -2,36 +2,36 @@
 - name: Clone dotfiles
   ansible.builtin.git:
     repo: https://github.com/justin-p/dotfiles.git
-    dest: "{{ ansible_env.HOME }}/.dotfiles"
+    dest: "/home/justin-p/.dotfiles"
 
 - name: Clone fzf
   ansible.builtin.git:
     repo: https://github.com/junegunn/fzf
-    dest: "{{ ansible_env.HOME }}/.fzf/"
+    dest: "/home/justin-p/.fzf/"
     depth: 1
 
 - name: Clone tmux plugin manager
   ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
-    dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+    dest: "/home/justin-p/.tmux/plugins/tpm"
     depth: 1
 
 - name: Clone vim-airline
   ansible.builtin.git:
     repo: https://github.com/vim-airline/vim-airline
-    dest: "{{ ansible_env.HOME }}/.vim/pack/dist/start/vim-airline"
+    dest: "/home/justin-p/.vim/pack/dist/start/vim-airline"
     depth: 1
 
 - name: Clone vim-airline-themes
   ansible.builtin.git:
     repo: https://github.com/vim-airline/vim-airline-themes
-    dest: "{{ ansible_env.HOME }}/.vim/pack/dist/start/vim-airline-themes"
+    dest: "/home/justin-p/.vim/pack/dist/start/vim-airline-themes"
     depth: 1
 
 - name: Clone vim-airline
   ansible.builtin.git:
     repo: https://github.com/scopatz/nanorc
-    dest: "{{ ansible_env.HOME }}/.nano"
+    dest: "/home/justin-p/.nano"
     version: v2.9
 
 - name: Install stow
@@ -42,26 +42,22 @@
 
 - name: Remove .vimrc
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.vimrc"
+    path: "/home/justin-p/.vimrc"
     state: absent
   tags:
     - molecule-idempotence-notest
 
 - name: Stow configurations
   ansible.builtin.command:
-    chdir: "{{ ansible_env.HOME }}/.dotfiles"
+    chdir: "/home/justin-p/.dotfiles"
     cmd: "stow {{ item }}"
   with_items:
   - bash
-  - BurpSuite
-  - flameshot
   - fzf
   - git
   - htop
-  - hyper
   - nano
   - tmux
-  - ulauncher
   - vim
   - zsh
   tags:
