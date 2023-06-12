@@ -14,7 +14,6 @@
         pip_executable: pip3
         pip_install_packages:
           - name: pipx
-          - name: docker
           - name: awscli
           - name: molecule
           - name: ansible-lint
