@@ -27,11 +27,3 @@
             caskname: 'font-firacode-nerd-font'
             mono: 'font-firacode-nerd-font-mono'
       tags: molecule-notest
-
-    - role: iancleary.zsh_antibody
-      vars:
-        users:
-         - username: "{{ lookup('env', 'USER') }}"
-           skip_zshrc: true
-        antibody_bundles:
-          - name: gitfast
