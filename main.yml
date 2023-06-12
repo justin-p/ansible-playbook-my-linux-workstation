@@ -16,13 +16,6 @@
         name: unzip
       become: yes
 
-    - name: Check if we are running on Parrot GNU/Linux
-      ansible.builtin.set_fact:
-        running_on_parrot: "{{ True if ansible_facts['os_family'] == 'Parrot GNU/Linux' else False }}"
-
-    - import_tasks: "{{ playbook_dir }}/tasks/parrot_os.yml"
-      when: running_on_parrot
-
 - ansible.builtin.import_playbook: "{{ playbook_dir }}/tasks/roles.yml"
 
 - hosts: all
