@@ -15,8 +15,6 @@
           - name: pipenv
       tags: molecule-notest
 
-    - role: diodonfrost.terraform
-
     - role: drew-kun.nerdfonts
       vars:
         nerdfonts_fonts:
